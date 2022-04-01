@@ -6,10 +6,11 @@ from rest_framework.parsers import MultiPartParser, FormParser
 # Create your views here.
 
 class FishRecordViewSet(APIView):
-    def post(self,request):
+    parser_classes = [MultiPartParser, FormParser]
+    def post(self,request,format=None):
         serializer=FishRecordSerializer(data=request.data)
         if(serializer.is_valid()):
-            serializer.save()
+            serializer.save(image=request.data.get('image'))
             return Response({'message':'done'})
         return Response(serializer.errors)
 
