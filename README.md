@@ -138,7 +138,47 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 
 ```
-## Approach
+
+
+## How to use
+**Method : GET**
+```
+url: https://resizepic.herokuapp.com/records/
+Response: 
+[
+    {
+        "title": "qwqw",
+        "image": "/media/images/qwqw/Screenshot_from_2022-03-31_18-50-32.png",
+        "weight": 12,
+        "length": 31,
+        "created_at": "2022-04-01T08:54:56.888628Z",
+        "updated_at": "2022-04-01T08:54:56.888681Z"
+    },
+]
+```
+**Method : POST**
+```
+url:https://resizepic.herokuapp.com/records/
+
+Content-Type:multipart/form-data; boundary=1729871897812
+
+Request:
+{
+"title":"abc",
+"image":file,
+"length":123,
+"weight":123,
+"latitude":12.000000,
+"longitude":10.000000,
+}
+
+Response:
+{
+    "message": "done"
+}
+```
+
+# Approach
 I have used Pillow to resize the image during record creation. So the two codes before and after are as follows:
 **Before resize functionality**
 ```class FishRecord(models.Model):
