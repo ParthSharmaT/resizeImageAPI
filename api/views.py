@@ -2,11 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models import FishRecord
 from .serializers import FishRecordSerializer
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser,FileUploadParser
 # Create your views here.
 
 class FishRecordViewSet(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser,FileUploadParser)
     def post(self,request):
         serializer=FishRecordSerializer(data=request.data)
         if(serializer.is_valid()):
@@ -19,5 +19,3 @@ class FishRecordViewSet(APIView):
         data=FishRecord.objects.all().order_by('created_at').reverse()
         serializer=FishRecordSerializer(data,many=True)
         return Response(serializer.data)   
-
-        
