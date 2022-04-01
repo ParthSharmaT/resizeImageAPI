@@ -30,3 +30,4 @@ class FishRecord(models.Model):
             pic.save(self.image.path)
     def __str__(self):
         return self.title
+
