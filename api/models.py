@@ -28,6 +28,5 @@ class FishRecord(models.Model):
             pic=Image.open(self.image.path)
             pic.thumbnail((140,140),Image.LANCZOS)
             pic.save(self.image.path)
-            
     def __str__(self):
         return self.title
